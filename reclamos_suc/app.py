@@ -8,7 +8,15 @@ app = Flask(__name__)
 
 # Simulación de una "base de datos" de sucursales
 sucursales = {
-    
+    "sucursalBera": {
+        "nombre": "Sucursal Berazategui"
+    },
+    "sucursalB": {
+        "nombre": "Sucursal Bernal"
+    },
+    "sucursalL1": {
+        "nombre": "Sucursal Lavalle I"
+    },
     "sucursalL2": {
         "nombre": "Sucursal Lavalle II"
     },
