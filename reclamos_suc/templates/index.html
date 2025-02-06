@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta viewport para que el sitio se ajuste a cualquier tamaño de pantalla -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página Principal - Sucursales</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Animate.css para animaciones sutiles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding-top: 80px; /* Compensa el navbar fijo */
+    }
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .navbar-brand {
+      white-space: normal;
+    }
+    /* Estilo para el logo centrado */
+    .logo {
+      max-height: 80px;
+      margin: 20px auto;
+      display: block;
+      width: auto;
+    }
+    /* Sección Hero */
+    .hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .hero p {
+      font-size: 1.25rem;
+    }
+    /* Tarjetas de sucursales */
+    .card {
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .btn {
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .navbar-brand {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar fijo -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Sucursales</a>
+    </div>
+  </nav>
+  
+  <!-- Logo centrado debajo del navbar -->
+  <div class="container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+  </div>
+  
+  <!-- Sección Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInDown">Generador de códigos QR</h1>
+      <p class="animate__animated animate__fadeInUp">Seleccioná tu sucursal para generar el código QR de tus puntos de venta. Es un único QR para todos los PV de tu sucursal.</p>
+    </div>
+  </section>
+  
+  <!-- Sección de Sucursales -->
+  <section id="sucursales">
+    <div class="container">
+      <div class="row">
+        {% for id, info in sucursales.items() %}
+        <div class="col-md-6 mb-4">
+          <div class="card p-3 animate__animated animate__fadeInUp">
+            <div class="card-body">
+              <h5 class="card-title">{{ info.nombre }}</h5>
+              <p class="card-text">Generá el código QR para esta sucursal. Podés incluir un texto adicional en el pie.</p>
+              <div class="d-flex justify-content-around">
+                <a href="{{ url_for('generar_qr', sucursal_id=id) }}" target="_blank" class="btn btn-primary">Generar QR</a>
+                <a href="{{ url_for('generar_qr', sucursal_id=id) }}?texto=¡Visítanos!" 
+                   target="_blank" 
+                   class="btn btn-secondary disabled" 
+                   tabindex="-1" 
+                   aria-disabled="true">
+                  QR con Texto
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <p class="text-center mt-4">Nota: En producción, los códigos QR ya estarán impresos en cada punto de venta.</p>
+    </div>
+  </section>
+  
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

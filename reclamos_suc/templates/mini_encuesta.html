@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Encuesta</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding-top: 80px; /* Evita solapamiento con el navbar fijo */
+    }
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    /* Permite el wrap del texto y ajusta el tamaño en móviles */
+    .navbar-brand {
+      white-space: normal;
+    }
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 0.8rem;
+      }
+    }
+    .card {
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .btn {
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .contact-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 0;
+    }
+    /* Estilo para el logo centrado */
+    .logo {
+      max-height: 80px;
+      margin: 20px auto;
+      display: block;
+      width: auto;
+    }
+    /* Ajustes adicionales para dispositivos pequeños */
+    @media (max-width: 576px) {
+      .card {
+        padding: 1rem;
+      }
+      .btn {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+      }
+      h1.card-title {
+        font-size: 1.75rem;
+      }
+      p.card-text {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar fijo -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        Bienvenido a nuestro nuevo canal de comunicación! 💬💪
+      </a>
+    </div>
+  </nav>
+  
+  <!-- Logo centrado debajo del navbar -->
+  <div class="container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+  </div>
+  
+  <!-- Contenido de la Mini Encuesta -->
+  <div class="container">
+    <h2 class="text-center mb-4">Mini Encuesta</h2>
+    <div class="card">
+      <form method="POST" action="{{ url_for('mini_encuesta') }}">
+        <div class="mb-3">
+          <label class="form-label">¿Te sentiste cómodo comprando en nuestro local?</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="comfortable" id="comfortableYes" value="sí" required>
+              <label class="form-check-label" for="comfortableYes">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="comfortable" id="comfortableNo" value="no">
+              <label class="form-check-label" for="comfortableNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">¿Nos recomendarías?</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="sí" required>
+              <label class="form-check-label" for="recommendYes">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="no">
+              <label class="form-check-label" for="recommendNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Correo electrónico</label>
+          <input type="email" name="email" class="form-control" value="@" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Enviar Encuesta</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

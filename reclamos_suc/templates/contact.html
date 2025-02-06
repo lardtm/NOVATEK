@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta viewport para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto - {{ sucursal.nombre }}</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Animate.css para animaciones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding-top: 80px; /* Evita solapamiento con el navbar fijo */
+    }
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    /* Permite el wrap del texto y ajusta el tamaño en móviles */
+    .navbar-brand {
+      white-space: normal;
+    }
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 0.8rem;
+      }
+    }
+    .card {
+      border: none;
+      background: rgba(59, 104, 177, 1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .btn {
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .contact-section {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px 0;
+    }
+    /* Estilo para el logo centrado */
+    .logo {
+      max-height: 80px;
+      margin: 20px auto;
+      display: block;
+      width: auto;
+    }
+    /* Ajustes adicionales para dispositivos pequeños */
+    @media (max-width: 576px) {
+      .card {
+        padding: 1rem;
+      }
+      .btn {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+      }
+      h1.card-title {
+        font-size: 1.75rem;
+      }
+      p.card-text {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar fijo -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        Bienvenido a nuestro nuevo canal de comunicación! 💬💪
+      </a>
+    </div>
+  </nav>
+  
+  <!-- Logo centrado debajo del navbar -->
+  <div class="container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+  </div>
+  
+  <!-- Sección de Contacto -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+          <div class="card p-4 animate__animated animate__fadeInUp">
+            <div class="card-body">
+              <h1 class="card-title mb-3">{{ sucursal.nombre }}</h1>
+              <p class="card-text mb-4">
+                Al hacer click en el botón verde, serás redirigido a WhatsApp para enviar tu comentario 💬, consulta <span style="color: #28a745;">❓</span>, queja 😠 o reclamo ⚠️. El mensaje será respondido a la brevedad. También podés completar nuestra Mini Encuesta 📝 para aydarnos a ser cada día mejores!
+              </p>
+              <div class="d-grid">
+                <a href="{{ whatsapp_link }}" target="_blank" class="btn btn-success btn-lg">
+                  Enviar mensaje por WhatsApp
+                </a>
+              </div>
+              <!-- Nuevo botón para la mini encuesta -->
+              <div class="d-grid mt-3">
+                <a href="{{ url_for('mini_encuesta') }}" class="btn btn-info btn-lg">
+                  Mini Encuesta
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
